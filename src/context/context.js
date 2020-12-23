@@ -20,9 +20,10 @@ export const Provider = ({ children }) => {
       type: 'ADD_TRANSACTION',
       payload: transaction,
     });
+
   return (
     <ExpenseTrackerContext.Provider
-      value={{ deleteTransaction, addTransaction }}>
+      value={{ deleteTransaction, addTransaction, transactions }}>
       {children}
     </ExpenseTrackerContext.Provider>
   );
