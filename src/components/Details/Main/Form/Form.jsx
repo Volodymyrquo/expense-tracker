@@ -12,7 +12,10 @@ import React, { useState, useContext } from 'react';
 import useStyles from './styles';
 import { ExpenseTrackerContext } from '../../../../context/context';
 import { v4 as uuidv4 } from 'uuid';
-
+import {
+  incomeCategories,
+  expenseCategories,
+} from '../../../../constants/categories';
 const initialState = {
   amount: '',
   category: '',
@@ -33,6 +36,9 @@ const Form = () => {
     addTransaction(transaction);
     setFormData(initialState);
   };
+
+  const selectCategories =
+    formData.type === 'Income' ? incomeCategories : expenseCategories;
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
@@ -61,8 +67,11 @@ const Form = () => {
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }>
-            <MenuItem value='Business'>Business</MenuItem>
-            <MenuItem value='Salary'>Salary</MenuItem>
+            {selectCategories.map((c) => (
+              <MenuItem key={c.type} value={c.type}>
+                {c.type}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </Grid>
