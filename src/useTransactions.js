@@ -34,7 +34,7 @@ const useTransactions = (title) => {
     ],
   };
 
-  return { filteredCategories, total, chartData };
+  return { total, chartData };
 };
 
 export default useTransactions;
